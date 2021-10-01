@@ -15,20 +15,24 @@ the RDS was created and stored within the custom VPC made to fit the criteria, a
 ![image-1.png](./image-1.png)
 -------------------------------------------------------------------------------------------
 ## The EC2 instance as shown below;
+
 the EC2 instance, which used UBUNTU 20.08, was created using a T2 micro for this web application, putting aside the costs, the application was fairly light and only pulled information from the RDS database instance, meaning that the hardware requirements were fairly lightweight. the T2 micro contains one virtual CPU core and one GiB of Random Access memory, which was more than enough for the requirements of the web application.
 
 ![image-2.png](./image-2.png)
 --------------------------------------------------------------------------
 ## The custom VPC (Triotask)
+
 The custom VPC created for the task, was designed within the VPC wizard on AWS, this allowed an automated creation of a VPC that contains one public subnet, one private subnet, routing tables for both, an internet gateway and a NAT device. this streamlined the process and allowed me to expedite the creation of the VPC and lessen the chances of making any mistakes while creating the network itself. once created, I added another private subnet within another availablity zone for the VPC, this satisfied the availability zone requirements of adding the RDS to the VPC, also allowing the RDS server to withstand outages by having instances within multiple availability zones.
 ![image-3.png](./image-3.png)
 ----------------------------------------------------------------------------------------------
 ## The subnets within the VPC
+
 within the VPC as mentioned above, are three subnets, one publicly available to enable the EC2 instance to connect and communicate with the world wide web, and two private subnet, within which sat the RDS, enabling it to connect and communicate with only the EC2 instance within the VPC. the two private subnets are housed within different availability zones, EU-west-1a and b respectively to enable network resilience and availability in the case of an outage.
 
 ![image-4.png](./image-4.png)
 -------------------------------------------------------------------------------------------------
 ## Routing tables, where and why?
+
 the routing tables shown below were created as part of the automated VPC creation and were attached to the two original subnets, within the VPC, this enabled me to have the public subnet communicate with the internet gateway and the private subnet, and allowed the private subnet to determine where the inbound/outbound traffic would be headed to.
 
 
