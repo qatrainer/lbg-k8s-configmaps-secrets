@@ -39,4 +39,9 @@ the routing tables shown below were created as part of the automated VPC creatio
 the internet gateway created below very simply allowed the EC2 instance to connect and communicate to the outer internet and provide communication to the EC2 instance for the sake of development and for testing. 
 
 ![image-6.png](./image-6.png)
+--------------------------------------------------------------------------------------------------------
+## Security groups, got any ID?
+
+the security groups created, as seen by the two checked groups within the dashboard below. one was created as part of the automated VPC creation process to enable the outbound/inbound traffic rules for the public subnet and is assosciated as such, however, the second one was created for the private subnet in order to enable only the private IP of the EC2 instance to connect to the RDS and as such governed the traffic flow of the private subnet, so if any other instances or application components were added to the private subnet portion of the VPC, they too would be governed by the traffic rules set forth in the RDS security group. this would require me to make some changes if implemented, however, for the private subnet, only containing the RDS instance, the rule of only allowing the private IP of the EC2 instance to connect and only having traffic on port 3306 (mysql), worked perfectly.
+![image-7.png](./image-7.png)
 
